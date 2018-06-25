@@ -33,9 +33,3 @@ module.exports.recorderRunning = (req, res) => {
   }
 };
 
-
-exports.listarUm = function (req, res) {
-  req.db.collection('investidores').findOne({_id: ObjectID(req.params.id)}).then(function(result) {
-      res.send(result);
-  });
-};
