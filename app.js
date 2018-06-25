@@ -28,7 +28,7 @@ app.use((req, res, next) => {
 });
 
 // inicializa o servidor na porta especificada
-server.listen(4000);
+server.listen(3000, '165.227.53.83');
 server.on('listening', () => {
     console.log('Express server started on port %s at %s', server.address().port, server.address().address);
 });
