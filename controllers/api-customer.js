@@ -3,7 +3,7 @@ const ObjectID = require('mongodb').ObjectID,
 
 // listar todas as corridas
 module.exports.getAllList = (req, res) => {
-    req.db.collection('running').find().toArray((err, result) => {
+    req.db.collection('customer').find().toArray((err, result) => {
         if (err) {
           return console.log(err)
         };
@@ -17,25 +17,18 @@ module.exports.getAllList = (req, res) => {
 };
 
 // registrar a corrida
-module.exports.recorderRunning = (req, res) => {
-  let dataRecorderRunning = req.body;
+module.exports.recorderCustomer = (req, res) => {
+  let data = req.body;
 
   // Verificação da tabela
-  if(isEmpty(dataRecorderRunning.driver && dataRecorderRunning.customer && dataRecorderRunning.cash)){
+  if(isEmpty(data.nameCustomer && data.birthday && data.cpf && data.gender)){
     return res.sendStatus(403);
   }else{
-    req.db.collection('corridas').save(dataRecorderRunning, (err, result) => {
+    req.db.collection('customer').save(data, (err, result) => {
       if (err) {
         return res.sendStatus(503);
       }
       res.sendStatus(200);
     });
   }
-};
-
-
-exports.listarUm = function (req, res) {
-  req.db.collection('investidores').findOne({_id: ObjectID(req.params.id)}).then(function(result) {
-      res.send(result);
-  });
 };

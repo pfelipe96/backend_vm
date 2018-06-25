@@ -5,6 +5,8 @@ const express        = require('express'),
 
 const controllerRunning = require('./controllers/api-running');
 const controllerDriver = require('./controllers/api-driver.js');
+const controllerCustomer = require('./controllers/api-customer.js');
+
 
 
 
@@ -39,5 +41,8 @@ app.get('/running', controllerRunning.getAllList);
 
 app.get('/driver', controllerDriver.getAllList);
 app.post('/driver', controllerDriver.recorderDriver);
+
+app.get('/customer', controllerCustomer.getAllList);
+app.post('/customer', controllerCustomer.recorderCustomer);
 
 
