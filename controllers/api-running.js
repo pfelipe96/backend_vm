@@ -4,27 +4,22 @@ const ObjectID = require('mongodb').ObjectID,
 // listar todas as corridas
 module.exports.getAllList = (req, res) => {
     req.db.collection('running').find().toArray((err, result) => {
-        if (err) {
-          return console.log(err)
-        };
-        
-        if(isEmpty(result) || result.lenght == 0){
-          res.send(result)
-        }else{
-          res.send(result);
-        }
+      if (err) {
+        return res.sendStatus(503);
+      }
+      res.send(result);
     });
 };
 
 // registrar a corrida
 module.exports.recorderRunning = (req, res) => {
-  let dataRecorderRunning = req.body;
+  let data = req.body;
 
   // Verificação da tabela
-  if(isEmpty(dataRecorderRunning.driver && dataRecorderRunning.customer && dataRecorderRunning.cash)){
-    return res.sendStatus(403);
+  if(isEmpty(data.driver && data.customer && data.cash)){
+    return res.sendStatus(400);
   }else{
-    req.db.collection('corridas').save(dataRecorderRunning, (err, result) => {
+    req.db.collection('corridas').save(data, (err, result) => {
       if (err) {
         return res.sendStatus(503);
       }

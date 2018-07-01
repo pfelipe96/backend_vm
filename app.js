@@ -7,9 +7,6 @@ const controllerRunning = require('./controllers/api-running');
 const controllerDriver = require('./controllers/api-driver.js');
 const controllerCustomer = require('./controllers/api-customer.js');
 
-
-
-
 // inicializa o express
 const app = express();
 const server = http.createServer(app);
@@ -18,7 +15,7 @@ const server = http.createServer(app);
 app.use(bodyParser.json());
 
 // inicializa mongo e expoe para o express
-app.use(expressMongoDb('mongodb://localhost:27017/dbRunning'));
+app.use(expressMongoDb('mongodb://localhost:27017/db_running'));
 
 // libera acesso à API de qualquer host/cliente
 app.use((req, res, next) => {
@@ -28,7 +25,7 @@ app.use((req, res, next) => {
 });
 
 // inicializa o servidor na porta especificada
-server.listen(3000, '165.227.53.83');
+server.listen(3000);
 server.on('listening', () => {
     console.log('Express server started on port %s at %s', server.address().port, server.address().address);
 });
