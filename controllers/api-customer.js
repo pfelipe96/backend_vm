@@ -39,14 +39,3 @@ saveCustomerDb = (data, req, res) => {
     res.sendStatus(200);
   });
 };
-
-// exports.deletar = function (req, res) {
-//   var id = req.params.id;
-
-//   req.db.collection('investidores').remove({_id: ObjectID(id)}, {justOne: true}, function(err, result) {
-//     if (err) {
-//       return res.sendStatus(503);
-//     }
-//     res.sendStatus(200);
-//   });
-// };

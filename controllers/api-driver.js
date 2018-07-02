@@ -1,4 +1,5 @@
 const ObjectID = require('mongodb').ObjectID,
+      regex = require('mongodb').r
       isEmpty  = require('is-empty');
 
 // listar todas as corridas
@@ -39,3 +40,20 @@ saveDriver = (data, req, res) => {
     res.sendStatus(200);
   });
 }
+
+
+module.exports.searchDriver = (req, res) => {
+  let data = req.body;
+
+  if(isEmpty(data.nameDriver)){
+    return res.sendStatus(400);
+  }else{
+    req.db.collection('driver').find({nameDriver: {$regex: data.nameDriver, $options:'i'}}).toArray((err, result) => {
+      if (err) {
+        return res.sendStatus(503);
+      }
+      res.send(result);
+    });
+  }
+};
+

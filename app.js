@@ -38,6 +38,7 @@ app.get('/running', controllerRunning.getAllList);
 
 app.get('/driver', controllerDriver.getAllList);
 app.post('/driver', controllerDriver.recorderDriver);
+app.post('/driver-search', controllerDriver.searchDriver)
 
 app.get('/customer', controllerCustomer.getAllList);
 app.post('/customer', controllerCustomer.recorderCustomer);
